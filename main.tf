@@ -13,7 +13,7 @@ module "wafv2" {
   source        = "trussworks/wafv2/aws"
   version       = "2.4.0"
 
-  name          = module.label.id
+  name          = "${module.label.id}-web-acl"
   scope         = var.scope
   associate_alb = var.associate_alb
 
