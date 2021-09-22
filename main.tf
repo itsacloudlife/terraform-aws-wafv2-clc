@@ -54,7 +54,7 @@ resource "aws_ssm_parameter" "waf_web_acl_id" {
   name        = "/${var.namespace}/${var.stage}/waf/${var.name}"
   description = "the waf_acl_id for ${var.name}"
   type        = "String"
-  value       = module.dev_cdn_wafv2.web_acl_id
+  value       = module.wafv2.web_acl_id
   overwrite   = true
 
   tags = {
