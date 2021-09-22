@@ -149,11 +149,11 @@ variable "filtered_header_rule" {
   }
 }
 
-variable "tags" {
-  type        = map(string)
-  description = "A mapping of tags to assign to the WAFv2 ACL."
-  default     = {}
-}
+# variable "tags" {
+#   type        = map(string)
+#   description = "A mapping of tags to assign to the WAFv2 ACL."
+#   default     = {}
+# }
 
 variable "associate_alb" {
   type        = bool
