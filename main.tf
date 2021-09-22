@@ -1,10 +1,22 @@
+module "label" {
+  enabled    = var.default_target_group_enabled
+  source     = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.25.0"
+  attributes = var.attributes
+  delimiter  = var.delimiter
+  name       = var.name
+  namespace  = var.namespace
+  stage      = var.stage
+  tags       = var.tags
+}
+
 module "wafv2" {
   source        = "trussworks/wafv2/aws"
   version       = "2.4.0"
 
-  name          = var.name
+  name          = module.label.id
   scope         = var.scope
   associate_alb = var.associate_alb
+
   managed_rules = [
     {
       name            = "AWSManagedRulesCommonRuleSet",
@@ -44,7 +56,6 @@ module "wafv2" {
     }
   ]
 }
-
 
 output "web_acl_id" {
    value = module.wafv2.web_acl_id
