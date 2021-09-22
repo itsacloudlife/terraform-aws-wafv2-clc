@@ -61,11 +61,11 @@ output "web_acl_id" {
 }
 
 locals {
-    name_underbar = "abc"
+    name_underbar = replace(var.name, "-", "_")
 }
 
 resource "aws_ssm_parameter" "waf_web_acl_id" {
-  name        = "/${var.namespace}/${var.stage}/waf/${replace(var.name, '-', '_')}"
+  name        = "/${var.namespace}/${var.stage}/waf/${local.name_underbar}"
   description = "the waf_acl_id for ${var.name}"
   type        = "String"
   value       = module.wafv2.web_acl_id
