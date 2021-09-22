@@ -47,7 +47,7 @@ module "wafv2" {
 
 
 output "web_acl_id" {
-   value = module.dev_cdn_wafv2.web_acl_id
+   value = module.wafv2.web_acl_id
 }
 
 resource "aws_ssm_parameter" "waf_web_acl_id" {
