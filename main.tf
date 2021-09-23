@@ -14,7 +14,8 @@ data "aws_lb" "alb_arn" {
 
 module "wafv2" {
   source        = "trussworks/wafv2/aws"
-  version       = "2.4.0"
+  #version       = "2.4.0"
+  version       = "2.1.0"
 
   name          = "${module.label.id}-web-acl"
   scope         = var.scope
