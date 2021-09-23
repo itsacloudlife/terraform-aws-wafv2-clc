@@ -9,7 +9,7 @@ module "label" {
 }
 
 data "aws_lb" "alb_arn" {
-  name = mpdule.label.id
+  name = module.label.id
 }
 
 module "wafv2" {
