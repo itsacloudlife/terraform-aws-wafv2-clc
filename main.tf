@@ -15,6 +15,7 @@ module "wafv2" {
   name          = "${module.label.id}-web-acl"
   scope         = var.scope
   associate_alb = var.associate_alb
+  alb_arn       = module.label.id
 
   managed_rules = [
     {
