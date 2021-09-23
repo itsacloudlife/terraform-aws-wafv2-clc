@@ -23,44 +23,7 @@ module "wafv2" {
   #alb_arn       = module.label.id
   alb_arn       = data.aws_lb.alb_arn.arn
 
-  managed_rules = [
-    {
-      name            = "AWSManagedRulesCommonRuleSet",
-      priority        = 10
-      override_action = "none"
-      excluded_rules  = []
-    },
-    {
-      name            = "AWSManagedRulesAmazonIpReputationList",
-      priority        = 20
-      override_action = "count"
-      excluded_rules  = []
-    },
-    {
-      name            = "AWSManagedRulesKnownBadInputsRuleSet",
-      priority        = 30
-      override_action = "none"
-      excluded_rules  = []
-    },
-    {
-      name            = "AWSManagedRulesLinuxRuleSet",
-      priority        = 40
-      override_action = "none"
-      excluded_rules  = []
-    },
-    {
-      name            = "AWSManagedRulesPHPRuleSet",
-      priority        = 50
-      override_action = "none"
-      excluded_rules  = []
-    },
-    {
-      name            = "AWSManagedRulesWordPressRuleSet",
-      priority        = 60
-      override_action = "none"
-      excluded_rules  = []
-    }
-  ]
+  managed_rules = var.managed_rules
 }
 
 output "web_acl_id" {
