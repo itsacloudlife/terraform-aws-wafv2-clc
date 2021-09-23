@@ -8,6 +8,10 @@ module "label" {
   tags       = var.tags
 }
 
+data "aws_lb" "alb_arn" {
+  name = mpdule.label.id
+}
+
 module "wafv2" {
   source        = "trussworks/wafv2/aws"
   version       = "2.4.0"
@@ -15,7 +19,8 @@ module "wafv2" {
   name          = "${module.label.id}-web-acl"
   scope         = var.scope
   associate_alb = var.associate_alb
-  alb_arn       = module.label.id
+  #alb_arn       = module.label.id
+  alb_arn       = data.aws_lb.alb_arn.arn
 
   managed_rules = [
     {
