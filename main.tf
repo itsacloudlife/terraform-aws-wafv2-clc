@@ -24,6 +24,8 @@ module "wafv2" {
   alb_arn       = data.aws_lb.alb_arn.arn
 
   managed_rules = var.managed_rules
+
+  ip_rate_based_rule = var.ip_rate_based_rule
 }
 
 output "web_acl_id" {
