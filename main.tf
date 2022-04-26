@@ -38,7 +38,7 @@ locals {
     name_underbar = replace(var.name, "-", "_")
 
     ip_sets_rule = var.ip_set != null ? [ {
-      name       = "${var.ip_set_action}_ips"
+      name       = "${module.label.id}-${var.ip_set_action}-ips"
       action     = var.ip_set_action
       priority   = 1
       ip_set_arn = var.ip_set.arn
