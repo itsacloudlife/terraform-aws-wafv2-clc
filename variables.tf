@@ -184,3 +184,11 @@ variable "default_action" {
   description = "The action to perform if none of the rules contained in the WebACL match."
   default     = "allow"
 }
+
+variable "ip_set" {
+  default = null
+}
+
+variable "ip_set_action" {
+  default = "allow"
+}

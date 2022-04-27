@@ -26,6 +26,8 @@ module "wafv2" {
   group_rules   = var.group_rules
 
   ip_rate_based_rule = var.ip_rate_based_rule
+
+  ip_sets_rule = local.ip_sets_rule
 }
 
 output "web_acl_id" {
@@ -34,6 +36,14 @@ output "web_acl_id" {
 
 locals {
     name_underbar = replace(var.name, "-", "_")
+
+    ip_sets_rule = var.ip_set != null ? [ {
+      name       = "${module.label.id}-${var.ip_set_action}-ips"
+      action     = var.ip_set_action
+      priority   = 1
+      ip_set_arn = var.ip_set.arn
+    }
+  ] : []
 }
 
 resource "aws_ssm_parameter" "waf_web_acl_id" {
